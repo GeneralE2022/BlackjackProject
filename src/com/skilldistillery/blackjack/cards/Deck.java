@@ -9,7 +9,7 @@ public class Deck {
 
 	public Deck() {
 		cards = createDeck();
-	}
+	} 
 
 	private List<Card> createDeck() {
 		List<Card> deck = new ArrayList<>(52);
