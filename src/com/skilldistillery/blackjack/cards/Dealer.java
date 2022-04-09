@@ -31,7 +31,7 @@ public class Dealer {
 	}
 
 	public Card getLastCard() {
-		return hand.getHand().get(1);
+		return hand.getHand().get(0);
 	}
 
 	public void setDeck(Deck deck) {

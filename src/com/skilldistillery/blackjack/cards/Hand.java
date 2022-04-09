@@ -14,22 +14,18 @@ public class Hand {
 
 	public void addCard(Card card) {
 		handOfCards.add(card);
-		handValue = getValue();
+		handValue = getHandValue();
 	}
 
 	public List<Card> getHand() {
 		return handOfCards;
 	}
 
-	public int getValue() {
+	public int getHandValue() {
 		handValue = 0;
 		for (Card card : handOfCards) {
 			handValue += card.getValue();
 		}
-		return handValue;
-	}
-
-	public int getHandValue() {
 		return handValue;
 	}
 

@@ -11,6 +11,7 @@ public class BlackjackApp {
 	Dealer dealer = new Dealer();
 	Player player = new Player();
 	private boolean dealerTurn = true;
+	private boolean playerTurn = true;
 
 	public static void main(String[] args) {
 		BlackjackApp bj = new BlackjackApp();
@@ -18,16 +19,11 @@ public class BlackjackApp {
 	}
 
 	private void run() {
-		// dealer draws 1 card face down
-		// player is dealt 1 card
-		// dealer draws 1 card face up
-		// player is dealt 1 card
-		// dealer draws up to 17+ pts -> busts if 21+
-		// player draws up to 17+ pts -> busts if 21+
 		System.out.println("***** Let's play a game of Blackjack *****");
 		System.out.println("Dealer shuffles a new deck....");
 		dealer.shuffle();
 		dealer.addCard(dealerInitialDraw()); // dealer draws 1 card face down
+//		System.out.println("TESTING: " + dealer.getLastCard().toString());
 		System.out.println();
 		player.addCard(playerDraws()); // player is dealt 1 card
 		System.out.println();
@@ -36,30 +32,35 @@ public class BlackjackApp {
 		System.out.println("\tYour current hand totals: " + player.getHandValue());
 		System.out.println();
 		dealerTurn();
-		playerTurn();
 	}
 
 	public void dealerTurn() {
 
-		while (dealer.getHandValue() < 17) {
-			dealer.addCard(dealerDraws());
+		while (dealerTurn) {
 
-			if (dealer.getHandValue() > 17 && dealer.getHandValue() < 21) {
+			if (dealer.getHandValue() < 17) {
+				dealer.addCard(dealerDraws());
+			}
+
+			else if (dealer.getHandValue() > 17 && dealer.getHandValue() < 21) {
 				System.out.println("Dealer stays.");
-//			playerTurn();
+				dealerTurn = false;
 			}
 
-			if (dealer.getHandValue() > 21) {
+			else {
+				dealerTurn = false;
 				dBust();
+				break;
 			}
+
 		}
+		playerTurn();
 	}
 
 	public void playerTurn() {
-		System.out.println();
-		System.out.println("Your turn...");
-
-		while (player.getHandValue() < 22) {
+		while (playerTurn) {
+			System.out.println();
+			System.out.println("Your turn...");
 			System.out.println("Please choose to (D)raw or (S)tay");
 			String input = sc.nextLine();
 
@@ -68,6 +69,7 @@ public class BlackjackApp {
 				player.addCard(playerDraws());
 				if (player.getHandValue() > 22) {
 					pBust();
+					break;
 				}
 
 			case "S":
@@ -108,18 +110,20 @@ public class BlackjackApp {
 	}
 
 	public void dBust() {
-		System.out.println("The dealer lost.");
+		System.out.println("\tYou won!");
 		dealerTurn = false;
-		System.exit(0);
+		playerTurn = false;
 	}
 
 	public void pBust() {
-		System.out.println("You lost.");
-		System.exit(0);
+		System.out.println("\tYou lost.");
+		dealerTurn = false;
+		playerTurn = false;
 	}
 
 	public void tie() {
-		System.out.println("It's a tie.");
-		System.exit(0);
+		System.out.println("\tIt's a tie.");
+		dealerTurn = false;
+		playerTurn = false;
 	}
 }
