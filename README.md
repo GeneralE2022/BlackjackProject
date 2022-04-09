@@ -6,23 +6,23 @@
 
 Blackjack game simulator: 
 
-1. // insert 
+1. Play a game of Blackjack against the computer! 
+2. Draw cards against the dealer, and decide to Draw or Stay. 
+3. Whoever ends up with the higher total point value, while not exceeding 21 points total, is the winner! 
 
 
 ## Technologies / Skills used 
 * Java 
 * Eclipse 
-* Arrays / ArrayList 
+* Object-oriented programming 
+* ArrayList 
 * Encapsulation 
-* Interfaces 
-* Polymorphism 
-* Abstract classes 
 * Setters / getters 
 * Constructors 
 * the toString method 
 
 ## Lessons learned 
-* How to work with multiple classes 
-* How to use interfaces 
+* Practice working with multiple classes and objects 
 * General familiarity with polymorphism 
-* Controlling a while loop with a controller variable 
+* Controlling a while loop with a controller variable
+* Loops of various kinds  
