@@ -5,11 +5,11 @@ import java.util.Collections;
 import java.util.List;
 
 public class Deck {
-	private List<Card> cards;
+	private List<Card> deck;
 
 	public Deck() {
-		cards = createDeck();
-	} 
+		deck = createDeck();
+	}
 
 	private List<Card> createDeck() {
 		List<Card> deck = new ArrayList<>(52);
@@ -21,16 +21,16 @@ public class Deck {
 		return deck;
 	}
 
+	public Card dealCard() {
+		return deck.remove(0);
+	}
+
 	public int checkDeckSize() {
-		return cards.size();
+		return deck.size();
 	}
 
 	public void shuffle() {
-		Collections.shuffle(cards);
-	}
-
-	public Card dealCard() {
-		return cards.remove(0);
+		Collections.shuffle(deck);
 	}
 
 }
